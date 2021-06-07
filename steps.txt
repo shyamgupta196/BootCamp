@@ -1,0 +1,10 @@
+#pseudo code 
+## 1.create a board
+##  cannot play at same place
+## x should start first 
+## iterator which maintains the chances 
+## 2.win check infinite loop 
+##   2.1 -> horizontally check 
+##   2.2 -> vertically check 
+##   2.3 -> diagonally check 
+## .score boards
