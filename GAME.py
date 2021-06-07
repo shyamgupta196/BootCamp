@@ -1,10 +1,8 @@
-from day3 import checker, all_same, continuer
+from day3 import checker, all_same
 
 # overplay
 ## wins done
 size = int(input("What should be the board size: "))
-
-
 def make_board():
     global board
     board = []
@@ -13,16 +11,23 @@ def make_board():
         for i in range(size):
             local_list.append(0)
         board.append(local_list)
-
-
+        
 make_board()
-
-
 def display():
     for row_no, row in enumerate(board):
         print(row_no, "  ", *row)
 
-
+def continuer():
+    continooo = input("Do you want to play again!!(y/n) :")
+    win = True
+    if continooo.lower() == "y":
+        make_board()
+        i = 0
+        win = False
+    else:
+        print("Game over !!! ")
+        game = False
+        
 def turns(player):
     print(f"its {player} turn")
     row = int(input("what row you want to play: "))
