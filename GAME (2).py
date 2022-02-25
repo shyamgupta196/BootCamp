@@ -1,5 +1,5 @@
-from day3 import checker, all_same, continuer
-
+from day3 import checker, all_same
+import pandas as pd 
 # overplay
 ## wins done
 size = int(input("What should be the board size: "))
@@ -45,7 +45,7 @@ while game:
         diags.append(board[idx][reverse_idx])
     if all_same(diags):
         print(f"Player {diags[0]} has won Diagonally (/)")
-        continuer()
+        continuer()5
         break
     # \ diagonal
     diags = []
