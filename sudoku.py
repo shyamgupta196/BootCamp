@@ -18,6 +18,8 @@ if type(math.isqrt(board)) == int:
         sb.append(l1)
         del(l1)
 
+p = sb
+
 
 def user_ip():
     row = int(input("what row you want to play: "))
@@ -44,21 +46,19 @@ def checker(row, col, num):
     '''
     r_counter = 0
     for i in range(board):
-        if i != col:
-            if sb[row][i] == num:
-                r_counter += 1
+        if p[row][i] == num:
+            r_counter += 1
 
-    if r_counter >= 1:
+    if r_counter > 1:
         print('entered number already exists')
         return False
     else:
         return True
     c_counter = 0
     for i in range(board):
-        if i != row:
-            if sb[i][col] == num:
-                c_counter += 1
-    if c_counter >= 1:
+        if p[i][col] == num:
+            c_counter += 1
+    if c_counter > 1:
         print('entered number already exists')
         return False
     else:
@@ -72,7 +72,7 @@ def block(num):
         foo = 0
         for j in range(pre, post):
             for k in range(pre, post):
-                if sb[j][k] == num:
+                if p[j][k] == num:
                     foo += 1
 
                 if foo > 1:
@@ -82,8 +82,12 @@ def block(num):
 bar = 0
 while bar < limit:
     row, col, num = user_ip()
+    p[row][col] = num
+    print(checker(row, col, num))
+    print(block(num))
     if checker(row, col, num):
         block(num)
+        sb[row][col] = num
         print(f'chal gaya...{num}')
         print(sb)
         bar += 1
