@@ -1,7 +1,7 @@
 from day3 import checker, all_same
-import pandas as pd 
+import pandas as pd
 # overplay
-## wins done
+# wins done
 size = int(input("What should be the board size: "))
 
 
@@ -35,8 +35,8 @@ win = False
 i = 0
 while game:
     no_of_players = 2
-    ## since we are using while loops now
-    ## the game wont terminate automatically INFINITE LOOP me fasega
+    # since we are using while loops now
+    # the game wont terminate automatically INFINITE LOOP me fasega
     # hence we check the condition
 
     # / diagonal
@@ -45,7 +45,7 @@ while game:
         diags.append(board[idx][reverse_idx])
     if all_same(diags):
         print(f"Player {diags[0]} has won Diagonally (/)")
-        continuer()5
+        # continuer()
         break
     # \ diagonal
     diags = []
@@ -53,7 +53,7 @@ while game:
         diags.append(board[ix][ix])
     if all_same(diags):
         print(f"Player {diags[0]} has won Diagonally (\\)")
-        continuer()
+        # continuer()
         break
 
     if i == int(len(board[0]) ** 2):
@@ -74,7 +74,7 @@ while game:
             except:
                 print("Oops! something went wrong")
         if checker(board, "X") == True:
-            continuer()
+            # continuer()
             break
 
     else:
@@ -93,5 +93,5 @@ while game:
             except:
                 print("Oops! something went wrong")
         if checker(board, "O") == True:
-            continuer()
+            # continuer()
             break

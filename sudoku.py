@@ -4,7 +4,7 @@
 # 4 --> 2
 # 9 --> 3
 import math
-
+import numpy as np
 
 board = int(input("what size do you want"))
 r_b = int(board**0.5)
@@ -49,45 +49,75 @@ def checker(row, col, num):
         if p[row][i] == num:
             r_counter += 1
 
-    if r_counter > 1:
-        print('entered number already exists')
-        return False
-    else:
-        return True
     c_counter = 0
     for i in range(board):
         if p[i][col] == num:
             c_counter += 1
-    if c_counter > 1:
-        print('entered number already exists')
-        return False
+
+    if c_counter == 1 and r_counter == 1:
+        return True
     else:
+        print('entered number already exists ')
+        p[row][col] = 0
+        return False
+
+# def ddblock(num):
+#     for i in range(1, r_b+1):
+#         pre = r_b*(i-1)
+#         post = r_b*(i)
+#         for j in range(1, r_b+1):
+#             pre_col = r_b*(i-1)
+#             post_col = r_b*(i)
+#             if row >= pre and row < post:
+#                 if col >= pre_col and col < post_col:
+
+#                     if foo > 1:
+#                         return False
+
+
+def usblock(num):
+    pre_row = row - row % r_b
+    post_row = row - (row % r_b) + r_b
+    pre_col = col - col % r_b
+    post_col = col - (col % r_b) + r_b
+    count = 0
+    for i in range(pre_row, post_row):
+        for j in range(pre_col, post_col):
+            pos = p[i][j]
+            if pos == num:
+                count += 1
+    if count > 1:
+        print("Num repeated enter new number!!")
+        p[row][col] = 0
+    elif count == 1:
         return True
 
 
-def block(num):
-    for i in range(1, r_b+1):
-        pre = r_b*(i-1)
-        post = r_b*(i)
-        foo = 0
-        for j in range(pre, post):
-            for k in range(pre, post):
-                if p[j][k] == num:
-                    foo += 1
+def solver(row, col):
+    num = np.random.randint(1, 4)
+    if p[row][col] == 0:
+        p[row][col] = num
+        if checker(row, col, num):
+            if usblock(num):
+                sb[row][col] = num
+                print('assigned')
 
-                if foo > 1:
-                    return False
+        print('drrrrrr')
 
 
 bar = 0
-while bar < limit:
+while bar <= limit:
     row, col, num = user_ip()
     p[row][col] = num
-    print(checker(row, col, num))
-    print(block(num))
     if checker(row, col, num):
-        block(num)
-        sb[row][col] = num
-        print(f'chal gaya...{num}')
-        print(sb)
-        bar += 1
+        if usblock(num):
+            sb[row][col] = num
+            print(f'chal gaya...{num}')
+            print(sb)
+            bar += 1
+        else:
+            print('error occ.')
+
+for i in range(0, board):
+    for j in range(0, board):
+        solver(i, j)
